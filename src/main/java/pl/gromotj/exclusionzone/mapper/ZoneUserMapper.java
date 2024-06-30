@@ -18,11 +18,11 @@ public class ZoneUserMapper {
                 zoneUser.getCreatedAt(),
                 zoneUser.isVerified(),
                 zoneUser.getVTokens(),
-                zoneUser.getCreatedArtifacts(),
-                zoneUser.getCreatedAnomalies(),
-                zoneUser.getCreatedLocations(),
+
                 zoneUser.getCreatedCharacters(),
-                zoneUser.getCreatedWildlife()
+                zoneUser.getCreatedEntries(),
+                zoneUser.getCreatedSubEntries(),
+                zoneUser.getArticles()
         );
     }
 
@@ -39,11 +39,11 @@ public class ZoneUserMapper {
                 zoneUserDto.getCreatedAt(),
                 zoneUserDto.isVerified(),
                 zoneUserDto.getVTokens(),
-                zoneUserDto.getCreatedAnomalies(),
-                zoneUserDto.getCreatedArtifacts(),
-                zoneUserDto.getCreatedLocations(),
                 zoneUserDto.getCreatedCharacters(),
-                zoneUserDto.getCreatedWildlife()
+                zoneUserDto.getCreatedEntry(),
+                zoneUserDto.getCreatedSubEntry(),
+                zoneUserDto.getCreatedArticle()
+
         );
     }
 

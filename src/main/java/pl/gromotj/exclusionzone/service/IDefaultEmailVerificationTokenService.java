@@ -8,4 +8,6 @@ public interface IDefaultEmailVerificationTokenService {
     EmailConfirmationToken findByToken(String eToken);
     void removeToken(EmailConfirmationToken eToken);
     void removeTokenByToken(String eToken);
+
+    boolean verifyToken(String eToken);
 }

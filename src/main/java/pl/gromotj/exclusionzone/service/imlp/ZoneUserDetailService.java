@@ -32,19 +32,20 @@ public class ZoneUserDetailService implements UserDetailsService {
     }
 
 
-//    public UserDetails loadUserByEmail(String email) throws UserEmailNotFoundException {
-//        Optional<ZoneUser> user = repository.findByUserEmail(email);
-//        if(user.isPresent()){
-//            var userObj = user.get();
-//            return User.builder()
-//                    .username(userObj.getUserName())
-//                    .password(userObj.getPassword())
-//                    .roles(getRoles(userObj))
-//                    .build();
-//        }else{
-//            throw new UsernameNotFoundException(username);
-//        }
-//    }
+    public UserDetails loadUserByEmail(String email) throws UserEmailNotFoundException {
+        Optional<ZoneUser> user = repository.findByEmail(email);
+        if(user.isPresent()){
+            var userObj = user.get();
+            return User.builder()
+                    .username(userObj.getUserName())
+                    .password(userObj.getPassword())
+                    .roles(getRoles(userObj))
+                    .build();
+        }else{
+            throw new UsernameNotFoundException(email);
+        }
+    }
+
 
     private String[] getRoles(ZoneUser userObj) {
         if(userObj.getGlobalRole() == null){

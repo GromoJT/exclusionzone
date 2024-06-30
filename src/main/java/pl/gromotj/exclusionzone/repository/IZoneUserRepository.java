@@ -8,9 +8,9 @@ import pl.gromotj.exclusionzone.entity.ZoneUser;
 import java.util.Optional;
 @Repository
 @Transactional
-public interface IZoneUserRepository extends JpaRepository<ZoneUser,Long> {
+public interface IZoneUserRepository extends JpaRepository<ZoneUser,String> {
     Optional<ZoneUser> findByUserName(String userName);
-//    Optional<ZoneUser> findByUserEmail(String email);
-
+    Optional<ZoneUser> findByEmail(String email);
+    Optional<ZoneUser> findById(String zoneUserId);
 
 }

@@ -14,11 +14,13 @@ import pl.gromotj.exclusionzone.dto.RegisterZoneUserDto;
 import pl.gromotj.exclusionzone.dto.ZoneUserDto;
 import pl.gromotj.exclusionzone.entity.ZoneUser;
 
-import pl.gromotj.exclusionzone.repository.IZoneUserRepository;
-import pl.gromotj.exclusionzone.service.imlp.ZoneUserDetailService;
+
+import pl.gromotj.exclusionzone.service.EmailService;
+
+import pl.gromotj.exclusionzone.service.imlp.DefaultEmailVerificationTokenServiceImpl;
+
 import pl.gromotj.exclusionzone.service.imlp.ZoneUserServiceImpl;
-import pl.gromotj.exclusionzone.webtoken.JwtService;
-import pl.gromotj.exclusionzone.webtoken.LoginForm;
+
 
 @RestController
 @AllArgsConstructor
@@ -26,21 +28,29 @@ import pl.gromotj.exclusionzone.webtoken.LoginForm;
 public class RegistrationController {
 
 
-
+    @Autowired
+    private DefaultEmailVerificationTokenServiceImpl emailVerificationTokenService;
     @Autowired
     private ZoneUserServiceImpl zoneUserService;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private EmailService emailService;
+
     @PostMapping("/zone-user")
-    public ResponseEntity<ZoneUserDto> createZoneUser(@RequestBody RegisterZoneUserDto RegisterZoneUserDto){
+    public ResponseEntity<String> createZoneUser(@RequestBody RegisterZoneUserDto RegisterZoneUserDto){
         ZoneUserDto saveZoneUser = zoneUserService.createZoneUser(RegisterZoneUserDto);
-        return new ResponseEntity<>(saveZoneUser, HttpStatus.CREATED);
+        return new ResponseEntity<>("User successfully created ", HttpStatus.CREATED);
     }
 
-    @PostMapping("/verify/{token}")
+    @GetMapping("/verify/{token}")
     public ResponseEntity<String> verifyZoneUser(@PathVariable String token){
-
-        return ResponseEntity.ok("User has been verified!");
+        if(emailVerificationTokenService.verifyToken(token)){
+            return ResponseEntity.ok("User has been verified!");
+        }
+        else{
+            return ResponseEntity.ok("Verification faild");
+        }
     }
 }

@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,8 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 @Service
 public class JwtService {
-    public static final String SECRET = "54E295264D655ECD70CDCB8BEDAD8FA4B368808634F57BB611635B81D612056A170CDCEA8A2606111E23FD713ADBCBAA9EDB8F78AE2C70119CA9C86653E7E524";
+    @Value("${SECRET_FOR_TOKEN}")
+    private String SECRET;
 
     private static final long VALIDITY = TimeUnit.MINUTES.toMillis(30);
     public String generateToken(UserDetails userDetails){

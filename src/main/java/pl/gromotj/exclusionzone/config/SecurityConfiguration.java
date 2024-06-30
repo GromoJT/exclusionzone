@@ -34,14 +34,13 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(registry -> {
                     registry.requestMatchers(
-                            "/api/v1/register/**",
                             "/api/v1/authenticate",
                             "/api/v1/register/zone-user",
-                            "/register/**",
                             "/api-docs",
                             "/swagger-ui/**",
                             "/swagger-ui.html",
-                            "/api/v1/**"
+                            "/api/v1/register/verify/**"
+
                     ).permitAll();
                     //registry.requestMatchers("/api/v1/**").hasRole("ADMIN");
                     registry.anyRequest().authenticated();

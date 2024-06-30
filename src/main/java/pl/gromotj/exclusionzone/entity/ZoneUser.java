@@ -8,11 +8,11 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
-import pl.gromotj.exclusionzone.entity.Anomaly.AnomalyModel;
-import pl.gromotj.exclusionzone.entity.Artifact.ArtifactModel;
+
+import pl.gromotj.exclusionzone.entity.Article.ArticleModel;
+
 import pl.gromotj.exclusionzone.entity.Fraction.Character.CharacterModel;
-import pl.gromotj.exclusionzone.entity.Region.Location.LocationModel;
-import pl.gromotj.exclusionzone.entity.wildlife.WildlifeModel;
+
 
 
 import java.time.ZonedDateTime;
@@ -81,19 +81,16 @@ public class ZoneUser{
     private Set<EmailConfirmationToken> vTokens;
 
     @OneToMany(mappedBy = "author",cascade = CascadeType.ALL,orphanRemoval = true)
-    private Set<AnomalyModel> createdAnomalies;
-
-    @OneToMany(mappedBy = "author",cascade = CascadeType.ALL,orphanRemoval = true)
-    private Set<ArtifactModel> createdArtifacts;
-
-    @OneToMany(mappedBy = "author",cascade = CascadeType.ALL,orphanRemoval = true)
-    private Set<LocationModel> createdLocations;
-
-    @OneToMany(mappedBy = "author",cascade = CascadeType.ALL,orphanRemoval = true)
     private Set<CharacterModel> createdCharacters;
 
     @OneToMany(mappedBy = "author",cascade = CascadeType.ALL,orphanRemoval = true)
-    private Set<WildlifeModel> createdWildlife;
+    private Set<Entry> createdEntries;
+
+    @OneToMany(mappedBy = "author",cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<SubEntry> createdSubEntries;
+
+    @OneToMany(mappedBy = "author",cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<ArticleModel> articles;
 
     public ZoneUser(String userName, String loreName, String loreSurname, String email, String globalRole, String password) {
         this.userName = userName;

@@ -7,5 +7,7 @@ import pl.gromotj.exclusionzone.entity.ZoneUser;
 public interface IZoneUserService {
     ZoneUserDto createZoneUser(RegisterZoneUserDto registerZoneUserDto);
 
-//    ZoneUserDto getZoneUserById(Long zoneUserId);
+    ZoneUserDto getZoneUserById(String zoneUserId);
+
+    //ZoneUserDto getZoneUserById(Long zoneUserId);
 }

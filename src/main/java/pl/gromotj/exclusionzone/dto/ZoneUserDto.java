@@ -7,12 +7,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import pl.gromotj.exclusionzone.entity.Anomaly.AnomalyModel;
-import pl.gromotj.exclusionzone.entity.Artifact.ArtifactModel;
+
+import pl.gromotj.exclusionzone.entity.Article.ArticleModel;
 import pl.gromotj.exclusionzone.entity.EmailConfirmationToken;
+import pl.gromotj.exclusionzone.entity.Entry;
 import pl.gromotj.exclusionzone.entity.Fraction.Character.CharacterModel;
-import pl.gromotj.exclusionzone.entity.Region.Location.LocationModel;
-import pl.gromotj.exclusionzone.entity.wildlife.WildlifeModel;
+import pl.gromotj.exclusionzone.entity.SubEntry;
+
 
 import java.time.ZonedDateTime;
 import java.util.Set;
@@ -34,10 +35,10 @@ public class ZoneUserDto{
     private ZonedDateTime createdAt;
     private boolean isVerified = false;
     private Set<EmailConfirmationToken> vTokens;
-    private Set<ArtifactModel> createdArtifacts;
-    private Set<AnomalyModel> createdAnomalies;
-    private Set<LocationModel> createdLocations;
-    private Set<CharacterModel> createdCharacters;
-    private Set<WildlifeModel> createdWildlife;
 
+
+    private Set<CharacterModel> createdCharacters;
+    private Set<Entry> createdEntry;
+    private Set<SubEntry> createdSubEntry;
+    private Set<ArticleModel> createdArticle;
 }
